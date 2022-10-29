@@ -1,24 +1,34 @@
-from random import randint
+def loop1(tree):
+    tree[10]=tree[9]+4
+    tree[10]=tree[1]
+    if tree[1]==0 and tree[5]==0:
+        tree[2]=1
+    else:
+        tree[2]=0
+
+    loop2(tree)
+
+def loop2(tree):
+    tree[3]=tree[1]
+    tree[7]=tree[2]
+    tree[4]=tree[3]+tree[7]
+    if tree[2] == 0 and tree[4] == 0:
+        tree[5] = 1
+    else:
+        tree[5] = 0
+    tree[1]=tree[5]
+    tree[10]+=-1
+    if tree[10] != tree[11]:
+        loop2(tree)
+    tree[8]+=-1
+    if tree[8] != tree[1]:
+        loop1(tree)
+    return 0
 
 
-def qselect(i, array):
-    if len(array) > 0:
-        index = randint(0, len(array) - 1)
-        print(index)
-        array[0], array[index] = array[index], array[0]
-        pivot = array[0]
-        left = [x for x in array if x < pivot]
-        right = [x for x in array[1:] if x >= pivot]
-        array = left + [pivot] + right
-        print(array)
-        k = len(left) + 1
-        if i == k:
-            return pivot
-        elif i < k:
-            return qselect(i, left)
-        else:
-            return qselect(i - k, right)
 
 
-a=qselect(3,[6,1,8,2])
-print(a)
+
+
+a = [5,3,0,1,6,2,4,12,9,2,10,0]
+loop1(a)

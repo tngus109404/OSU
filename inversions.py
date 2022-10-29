@@ -1,6 +1,6 @@
 def num_inversions(list):
     inversion = 0
-    print(merge(list,inversion))
+    return merge(list,inversion)
 
 def merge(list,inversion):
     if len(list) > 1:
