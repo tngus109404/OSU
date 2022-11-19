@@ -1,20 +1,5 @@
 from collections import defaultdict
 from heapq import *
-
-def longest(n,edges):
-
-    my_order = order(n,edges)
-    print(f"my_order={my_order}")
-    graph = defaultdict(list)
-    pointer = defaultdict(list)
-    for u,v in edges:
-        graph[u].append(v)
-        pointer[v].append(u)
-    print(graph)
-    print(pointer[7])
-    path = 0
-
-
 def order(n, edges):
     if edges == []:
         output=[]
@@ -33,8 +18,7 @@ def order(n, edges):
     for u in edges:
         if pointer[u[0]] == []:
             heappush(h,u)
-            if u[0] not in output:
-                output.append(u[0])
+            output.append(u[0])
 
     while h != []:
         u,v = heappop(h)
@@ -50,11 +34,10 @@ def order(n, edges):
     else:
         return output
 
-# print(professor(8, [(0,2), (1,2), (2,3), (2,4), (4,3), (3,5), (4,5), (5,6), (5,7)])) #[0, 1, 2, 3, 4, 5, 6, 7]
-print(order(8, [(0,2), (1,2), (2,3), (2,4), (3,4), (3,5), (4,5), (5,6), (5,7)])) #[0, 1, 2, 3, 4, 5, 6, 7]
-print(order(8, [(0,2), (1,2), (2,3), (2,4), (4,3), (3,5), (4,5), (5,6), (5,7)])) #[0, 1, 2, 4, 3, 5, 6, 7]
-print(order(4, [(0,1), (1,2), (2,1), (2,3)])) #None
-print(order(5, [(0,1), (1,2), (2,3), (3,4)])) #[0, 1, 2, 3, 4]
-print(order(5, [])) #[0, 1, 2, 3, 4]  # could be any order
+print(order(8, [(0,2), (1,2), (2,3), (2,4), (3,4), (3,5), (4,5), (5,6), (5,7)]) )#[0, 1, 2, 3, 4, 5, 6, 7]
+print(order(8, [(0,2), (1,2), (2,3), (2,4), (4,3), (3,5), (4,5), (5,6), (5,7)]) )#[0, 1, 2, 4, 3, 5, 6, 7]
+print(order(4, [(0,1), (1,2), (2,1), (2,3)]) )#None
+print(order(5, [(0,1), (1,2), (2,3), (3,4)]) )#[0, 1, 2, 3, 4]
+print(order(5, []) )#[0, 1, 2, 3, 4]  # could be any order
 print(order(3, [(1,2), (2,1)])) #None
-print(order(1, [(0,0)])) # self-loop #None
+print(order(1, [(0,0)]) )# self-loop #None
